@@ -1,0 +1,15 @@
+services:
+  - type: web
+    name: xyz-real-estate-chatbot
+    env: python
+    buildCommand: pip install -r requirements.txt
+    startCommand: gunicorn -c gunicorn_config.py app:app
+    envVars:
+      - key: PYTHON_VERSION
+        value: 3.9.12
+      - key: HUBSPOT_API_KEY
+        sync: false
+      - key: GROQ_API_KEY
+        sync: false
+    healthCheckPath: /health
+    autoDeploy: true 
